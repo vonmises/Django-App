@@ -4,8 +4,11 @@
         <title></title>
     </head>
     <body>
-        <p>Hello World--This is Django</p>
         <p>{{ hello_message }}</p>
-        <p>{{ request.user }}</p>
+        <form action="" method="post" accept-charset="utf-8">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Register">
+        </form>
     </body>
 </html>
