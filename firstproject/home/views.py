@@ -12,7 +12,13 @@ def index(request):
     }
 
     if form.is_valid():
+        first_name = form.cleaned_data.get("first_name")
+
+        if first_name == "admin":
+            form.first_name = "superuser"
+
         form.save()
+
         context = {
                   "hello_message": "Student saved",
         }
