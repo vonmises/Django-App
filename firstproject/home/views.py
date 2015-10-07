@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.core.mail import send_mail
+
 from .forms import StudentForm, FeedbackForm
 
 # Create your views here.
@@ -29,8 +31,14 @@ def feedback(request):
     form = FeedbackForm(request.POST or None)
 
     if form.is_valid():
-        for key, value in form.cleaned_data.items():
-            print(key, value)
+        first_name = form.cleaned_data.get('first_name')
+        last_name = form.cleaned_data.get('last_name')
+        full_name = first_name + ' ' + last_name
+        message = form.cleaned_data.get('message')
+        formatted_message = 'You have feedback from {} saying "{}".'.format(full_name, message)
+        from_email = form.cleaned_data.get('email')
+        send_mail('Feedback', formatted_message, from_email,
+                 ['email'], fail_silently=False)
 
     context = {
               "form": form
