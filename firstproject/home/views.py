@@ -49,8 +49,8 @@ def feedback(request):
     return render(request, 'feedback.html', context)
 
 def students(request):
-    search_term = request.GET['search']
-    students = Student.objects.all().order_by('-last_update') \
+    search_term = request.GET.get('search', '')
+    students = Student.objects.all().order_by('last_name') \
                       .filter(last_name__contains=search_term)
     context = {
               'students': students
