@@ -11,6 +11,12 @@
         <style type="text/css">th { text-align: center; }</style>
     </head>
     <body>
+        {% if user.is_authenticated %}
+            <p>
+                Logged In: {{ request.user.username.title }}
+                <a class="pull-right" href="{% url "auth_logout" %}" >Log Out</a>
+            </p>
+        {% endif %}
         <table class="table table-striped table-bordered" >
             <tr>
                 <th></th>
