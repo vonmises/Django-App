@@ -39,10 +39,13 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
-    'home'
+    'crispy_forms',
+    'home',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +64,7 @@ ROOT_URLCONF = 'firstproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,3 +115,13 @@ STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'assets',
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'assets', 'static'),
 )
+
+# Authentication
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+LOGIN_REDIRECT_URL = '/students'
+
+REGISTRATION_AUTO_LOGIN = True
+
+SITE_ID = 1
