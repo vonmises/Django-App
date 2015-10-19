@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <form action="" method="post" accept-charset="utf-8">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Give Feedback">
-        </form>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block contact_active %}class="active"{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class='row'>
+            <div class='col-sm-6 col-sm-offset-3'>
+                <form action="" method="post" accept-charset="utf-8" style="width: 70%;">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Give Feedback">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
