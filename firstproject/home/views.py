@@ -4,9 +4,11 @@ from django.core.mail import send_mail
 from .forms import StudentForm, FeedbackForm
 from .models import Student
 
-# Create your views here.
 
 def index(request):
+    return render(request, 'home.html')
+
+def register(request):
     form = StudentForm(request.POST or None)
 
     context = {
@@ -26,7 +28,7 @@ def index(request):
                   "form_message": "Student saved",
         }
 
-    return render(request, 'index.html', context)
+    return render(request, 'register.html', context)
 
 def feedback(request):
     form = FeedbackForm(request.POST or None)
@@ -48,6 +50,7 @@ def feedback(request):
 
     return render(request, 'feedback.html', context)
 
+
 def students(request):
     search_term = request.GET.get('search', '')
     students = Student.objects.all().order_by('last_name') \
@@ -56,3 +59,7 @@ def students(request):
               'students': students
     }
     return render(request, 'students.html', context)
+
+
+def portfolio(request):
+    return render(request, 'delani.html')
