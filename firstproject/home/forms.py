@@ -17,10 +17,22 @@ class StudentForm(forms.ModelForm):
         return age
 
 class FeedbackForm(forms.Form):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField()
-    message = forms.CharField(widget=forms.Textarea)
+    first_name = forms.CharField(widget=forms.TextInput({
+                 "class": "form-control",
+                 "placeholder": "First Name",
+                 }))
+    last_name = forms.CharField(widget=forms.TextInput({
+                "class": "form-control",
+                "placeholder": "Last Name",
+                }))
+    email = forms.EmailField(widget=forms.TextInput({
+                "class": "form-control",
+                "placeholder": "Email",
+                }))
+    message = forms.CharField(widget=forms.Textarea({
+              "class": "form-control",
+              "placeholder": "Feedback",
+              }))
 
     def clean_message(self):
         message = self.cleaned_data.get('message')
